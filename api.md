@@ -32,37 +32,31 @@ Retrieve a recommendation for a current member of the subgraph.
             {
                 "entities": [
                     {
+                       "score": 0.9778
                         "relationship": {
                             "type": "Likes",
-                            "weight": 0.76,
+                            "weight": 4.0,
                             "source": {
+                              "id": {
+                                "key": "email",
+                                "value": "bob@loblaw.com"
+                              } 
                             },
                             "target": {
                                 "id": {
-                                    "imdb": "tt0398286"
+                                    "key": "imdb",
+                                    "value": "tt0398286"
                                 },
-                                "properties": {
-                                    title: "Tangled"
-                                }
+                                "properties": [
+                                  {
+                                    "key": "title",
+                                    "value": "Tangled"
+                                  }
+                                ]
                             }
                         }
                     },
-                    {
-                        "relationship": {
-                            "type": "Likes",
-                            "weight": 0.89,
-                            "source": {
-                            },
-                            "target": {
-                                "id": {
-                                    "imdb": "tt1217209",
-                                },
-                                "properties": {
-                                    "title": "Brave"
-                                }
-                            }
-                        }
-                    }
+                    ...
                 ]
             }
 
@@ -91,20 +85,17 @@ updated. For bulk data loading, use the CSV endpoint.
                 "entities": [
                     {
                         "id": {
-                            "email": "johndoe@example.com"
+                            "key": "email",
+                            "value": "johndoe@example.com"
                         },
-                        "properties": {
-                            "name": "John Doe"
-                        }
+                        "properties": [
+                            {
+                                "key": "name",
+                                "value": "John Doe"
+                            }
+                        ]
                     },
-                    {
-                        "id": {
-                            "janedoe@example.com"
-                        },
-                        "properties": {
-                            "name": "Jane Doe"
-                        }
-                    }
+                    ...
                 ]
             }
 
@@ -149,20 +140,17 @@ be updated. For bulk data loading, use the CSV endpoint.
                 "entities": [
                     {
                         "id": {
-                            "imdb": "tt0398286"
+                           "key": "imdb",
+                            "value": "tt0398286"
                         },
-                        "properties": {
-                            "title": "Tangled"
-                        }
+                        "properties": [ 
+                            {
+                                "key": "title",
+                                "value": "Tangled"
+                            }
+                        ]
                     },
-                    {
-                        "id": {
-                            "imdb": "tt1217209"
-                        },
-                        "properties": {
-                            "title": "Brave"
-                        }
-                    }
+                    ...
                 ]
             }
 
@@ -213,31 +201,31 @@ well.
                 "entities": [
                     {
                         "type": "Likes",
-                        "weight": 1.0,
+                        "weight": 4.0,
                         "source": {
                             "id": {
-                                "email": "johndoe@example.com"
-                            }
+                                "key": "email",
+                                "value": "johndoe@example.com"
+                            },
+                            "properties": [
+                                 {
+                                    "key": "name",
+                                    "value": "John Doe"
+                                 }
+                            ]
                         },
                         "target": {
                             "id": {
-                                "imdb": "tt0398286"
-                            }
+                                "key": "imdb",
+                                "value": "tt0398286"
+                            },
+                            "properties": [
+                                "key": "title",
+                                "value": "Tangled"
+                            ]
                         }
                     },
-                    {
-                        "type": "Likes",
-                        "source": {
-                            "id": {
-                                "email": "johndoe@example.com"
-                            }
-                        },
-                        "target": {
-                            "id": {
-                                "imdb": "tt1217209"
-                            }
-                        }
-                    }
+                    ...
                 ]
             }
 
