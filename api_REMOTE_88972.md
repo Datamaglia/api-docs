@@ -3,15 +3,17 @@ Note that the `Auth-Token` headers for the public API are application tokens,
 not authentication tokens (which the developers can't access since they are only
 used by the private API).
 
-# /recommendations/subgraphs/{subgraph}/member{?limit,id}
+# /recommendations/{app}/subgraphs/{subgraph}/member{?limit,id}
 
 ## GET
 Retrieve a recommendation for a current member of the subgraph.
 
 + Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
     + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
       subgraph from which to generate recommendations.
-    + limit (required, number, `2`) ... The maximum number of
+    + limit = `5` (optional, number, `2`) ... The maximum number of
       recommendations to return.
     + id (required, string, `janedoe@example.com`) ... User identifier
       associated with the user for whom recommendations are being generated.
@@ -58,9 +60,11 @@ Retrieve a recommendation for a current member of the subgraph.
                 ]
             }
 
-# /subgraphs/{subgraph}/data/sources/
+# /applications/{app}/subgraphs/{subgraph}/data/sources/
 
 + Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
     + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
       subgraph from which to generate recommendations.
 
@@ -80,7 +84,10 @@ updated. For bulk data loading, use the CSV endpoint.
             {
                 "entities": [
                     {
-                        "id": "john@doe.com",
+                        "id": {
+                            "key": "email",
+                            "value": "johndoe@example.com"
+                        },
                         "properties": [
                             {
                                 "key": "name",
@@ -108,9 +115,11 @@ updated. For bulk data loading, use the CSV endpoint.
 
 + Response 204
 
-# /subgraphs/{subgraph}/data/targets/
+# /applications/{app}/subgraphs/{subgraph}/data/targets/
 
 + Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
     + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
       subgraph from which to generate recommendations.
 
@@ -130,7 +139,10 @@ be updated. For bulk data loading, use the CSV endpoint.
             {
                 "entities": [
                     {
-                        "id": "tt0398286",
+                        "id": {
+                           "key": "imdb",
+                            "value": "tt0398286"
+                        },
                         "properties": [ 
                             {
                                 "key": "title",
@@ -158,9 +170,11 @@ be updated. For bulk data loading, use the CSV endpoint.
 
 + Response 204
 
-# /subgraphs/{subgraph}/data/relationships/
+# /applications/{app}/subgraphs/{subgraph}/data/relationships/
 
 + Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
     + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
       subgraph from which to generate recommendations.
 
@@ -186,9 +200,30 @@ well.
             {
                 "entities": [
                     {
+                        "type": "Likes",
                         "weight": 4.0,
-                        "source": "john@doe.com",
-                        "target": "tt0398286"
+                        "source": {
+                            "id": {
+                                "key": "email",
+                                "value": "johndoe@example.com"
+                            },
+                            "properties": [
+                                 {
+                                    "key": "name",
+                                    "value": "John Doe"
+                                 }
+                            ]
+                        },
+                        "target": {
+                            "id": {
+                                "key": "imdb",
+                                "value": "tt0398286"
+                            },
+                            "properties": [
+                                "key": "title",
+                                "value": "Tangled"
+                            ]
+                        }
                     },
                     ...
                 ]
