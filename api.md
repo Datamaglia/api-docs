@@ -209,3 +209,75 @@ well.
             {"type": "Likes", "source": {"id": {"email": "johndoe@example.com"}}, "target": {"id": {"imdb": "tt1217209"}}}
 
 + Response 204
+
+# /applications/{app}/subgraphs/{subgraph}/data/sources/{sval}
+
++ Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
+    + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
+      subgraph from which to generate recommendations.
+    + sval (required, string, `bob@loblaw.com`) ... ID value of the source
+      entity to delete.
+
+## DELETE
+
+Delete a source entity from the database.
+
++ Request
+
+    + Headers
+
+            Auth-Token: d44ed44ed44ed44ed44ed44ed44ed44e
+
++ Response 204
+
+# /applications/{app}/subgraphs/{subgraph}/data/targets/{tval}
+
++ Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
+    + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
+      subgraph from which to generate recommendations.
+    + tval (required, string, `reddit.com/awww`) ... ID value of the target
+      entity to delete.
+
+## DELETE
+
+Delete a target entity from the database.
+
++ Request
+
+    + Headers
+
+            Auth-Token: d44ed44ed44ed44ed44ed44ed44ed44e
+
++ Response 204
+
+# /applications/{app}/subgraphs/{subgraph}/data/relationships/{sval}/{tval}
+
++ Parameters
+    + app (required, string, `f321f321f321f321`) ... ID of the application from
+      which to generate a recommendation.
+    + subgraph (required, string, `a42ea42ea42ea42e`) ... ID of the recommender
+      subgraph from which to generate recommendations.
+    + sval (required, string, `bob@loblaw.com`) ... ID value of the source
+      entity end of the relationship to delete.
+    + tval (required, string, `reddit.com/awww`) ... ID value of the target
+      entity end of the relationship to delete.
+
+## DELETE
+
+Delete a relationship from the database. For instance, if a user "liked" a
+photo, you would add a relationship between the user (source) and the photo
+(target), depending on the composition of your subgraph. This endpoint allows
+you to then delete that relationship if the user "unlikes" the photo (perhaps it
+was done in error, or perhaps the user changed her mind).
+
++ Request
+
+    + Headers
+
+            Auth-Token: d44ed44ed44ed44ed44ed44ed44ed44e
+
++ Response 204
